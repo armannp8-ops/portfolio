@@ -1,0 +1,425 @@
+/* Base Reset & Dark Mode */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    background-color: #0d0d0d;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace; /* Terminal font vibe */
+}
+
+/* Hero Section Snap */
+.hero-section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.terminal-prefix {
+    color: #00ff66;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #00ff66;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+
+h2 {
+    font-size: 1.8rem;
+    min-height: 2.2rem;
+    color: #cccccc;
+}
+
+.hero-subtext {
+    margin-top: 15px;
+    color: #888888;
+    font-size: 1rem;
+}
+
+/* Blinking Terminal Cursor */
+.cursor {
+    display: inline-block;
+    color: #00ff66;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Floating Bubbles Animation */
+.bubbles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(0, 255, 102, 0.15); /* Subtle glowing green tint */
+    border: 1px solid rgba(0, 255, 102, 0.4);
+    border-radius: 50%;
+    animation: rise 12s infinite ease-in-out;
+}
+
+/* Bubble sizes & positioning offsets */
+.bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-duration: 10s; animation-delay: 0s}
+.bubble:nth-child(2) { width: 160px; height: 160px; left: 25%; animation-duration: 14s; animation-delay: -3s; }
+.bubble:nth-child(3) { width: 40px; height: 40px; left: 40%; animation-duration: 8s; animation-delay: -1s; }
+.bubble:nth-child(4) { width: 120px; height: 120px; left: 60%; animation-duration: 12s; animation-delay: -5s; }
+.bubble:nth-child(5) { width: 60px; height: 60px; left: 75%; animation-duration: 9s; animation-delay: -2s; }
+.bubble:nth-child(6) { width: 180px; height: 180px; left: 88%; animation-duration: 16s; animation-delay: -7s; }
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* --- MOBILE RESPONSIVE FIXES (Android & iOS) --- */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 0 24px; /* Extra side breathing room for Android screens */
+    }
+
+    h1 {
+        font-size: 2.2rem !important; /* Slightly scale down big heading for small screens */
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.2rem !important; /* Scale down typing text so it doesn't wrap weirdly */
+        min-height: 3rem; /* Give space for 2-line wrapping on narrow phones */
+    }
+
+    .hero-subtext {
+        font-size: 0.9rem !important;
+        padding: 0 10px;
+    }
+}
+
+/* --- SECTION 2: INTRO PAGE --- */
+.intro-section {
+    min-height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: row; /* Desktop: Left/Right side-by-side */
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    width: 100%;
+    gap: 40px;
+}
+
+/* Left Column: Terminal Styling */
+.intro-left {
+    flex: 1;
+}
+
+.terminal-window {
+    background: #121212;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+}
+
+.terminal-header {
+    background: #1e1e1e;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 20px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.prompt {
+    color: #00ff66;
+    font-weight: bold;
+}
+
+.blinking-cursor {
+    color: #00ff66;
+    animation: blink 0.8s infinite;
+}
+
+/* Right Column: Profile Image & Shadow */
+.intro-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper {
+    position: relative;
+    max-width: 380px;
+    width: 100%;
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Glowing drop shadow that fits transparent background cutouts */
+    filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.25)) drop-shadow(0 15px 15px rgba(0, 0, 0, 0.6));
+    transition: filter 0.3s ease;
+}
+
+.terminal-red-text {
+    color: #EF2929; /* Light/Bright terminal red */
+    font-weight: bold;
+
+    /* Optional: Gives it that neon CRT monitor glow */
+    text-shadow: 0 0 5px rgba(239, 41, 41, 0.6);
+}
+
+.profile-img:hover {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.45));
+}
+
+/* --- RESPONSIVE MOBILE STACK (Android / iOS) --- */
+@media (max-width: 850px) {
+    .intro-section {
+        height: auto; /* Allows section to expand vertically if needed on small screens */
+        min-height: 100vh;
+        padding: 60px 20px;
+    }
+
+    .intro-container {
+        flex-direction: column; /* Stack top-to-bottom on mobile */
+        gap: 30px;
+    }
+
+    .intro-left, .intro-right {
+        width: 100%;
+    }
+
+    .image-wrapper {
+        max-width: 260px; /* Resize photo so it fits cleanly under text on phone screens */
+    }
+
+    .terminal-body {
+        font-size: 0.85rem;
+        padding: 15px;
+    }
+}
+
+/* --- SECTION 3: PROJECTS EXPLORER --- */
+.projects-section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    max-width: 1800px;
+    height: 75vh; /* Fixed height for dashboard feel */
+    gap: 20px;
+}
+
+/* Left Sidebar: 30% width */
+.projects-sidebar {
+    flex: 0 0 28%;
+    background: #121212;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    background: #1e1e1e;
+    padding: 12px 15px;
+    color: #00ff66;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #2a2a2a;
+    font-weight: bold;
+}
+
+.project-list {
+    list-style: none;
+    padding: 15px 0;
+}
+
+.project-item {
+    padding: 12px 20px;
+    color: #aaaaaa;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 3px solid transparent;
+}
+
+.project-item:hover {
+    background: rgba(0, 255, 102, 0.05);
+    color: #ffffff;
+}
+
+.project-item.active {
+    background: rgba(0, 255, 102, 0.1);
+    color: #00ff66;
+    border-left-color: #00ff66;
+    font-weight: bold;
+}
+
+/* Right Terminal: Remaining width (~70%) */
+.projects-terminal {
+    flex: 1;
+    background: #121212;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Scrollable Body with custom scrollbar */
+.scrollable-terminal {
+    padding: 25px;
+    overflow-y: auto;
+    flex: 1;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+/* Custom Sleek Scrollbar */
+.scrollable-terminal::-webkit-scrollbar {
+    width: 8px;
+}
+.scrollable-terminal::-webkit-scrollbar-track {
+    background: #121212;
+}
+.scrollable-terminal::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 4px;
+}
+.scrollable-terminal::-webkit-scrollbar-thumb:hover {
+    background: #00ff66;
+}
+
+/* Formatting printed project content */
+.project-title-print {
+    color: #00ff66;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.project-tag {
+    display: inline-block;
+    background: #222222;
+    color: #ffbd2e;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 8px;
+    margin-bottom: 15px;
+}
+
+.project-img-preview {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    margin: 15px 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 850px) {
+    .projects-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 60px 20px;
+    }
+    .projects-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .projects-sidebar {
+        width: 100%;
+    }
+}

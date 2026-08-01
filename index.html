@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namra | Electronics & Cloud Engineer</title>
+
+  <!-- Load JetBrains Mono / Fira Code Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Floating Bubbles Container -->
+  <div class="bubbles-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <p class="terminal-prefix">> system.init()</p>
+      <h1>Hi, I'm <span class="highlight">Arman Sahl N P</span></h1>
+      <h2><span id="typing-text"></span><span class="cursor">|</span></h2>
+
+      <p class="hero-subtext">
+        Electronics & Communication Engineering (B.Tech)
+      </p>
+
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <div class="arrow">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Introduction -->
+  <section class="intro-section">
+    <div class="intro-container">
+
+      <!-- Left Column: Terminal Style Intro -->
+      <div class="intro-left">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">Arman@node-01:~</span>
+          </div>
+          <div class="terminal-body">
+            <!-- Command line with placeholders for JS typing -->
+            <p><span class="prompt">Arman@node-01:~$</span> <span id="cmd-text"></span><span id="term-cursor" class="blinking-cursor">_</span></p>
+
+            <!-- Output container hidden by default until typing finishes -->
+            <div id="cmd-output" style="display: none; margin-top: 15px;">
+              <p>> I am <span class="terminal-red-text">Arman Sahl N P</span>, Electronics & Communication Engineering graduate, completed B.Tech in colege of Engineering Thalassery</p>
+              <br>
+              <p>> Passionate video game developer working on custom projects, I love to make them</p>
+              <br>
+              <p>> Loves hardware-level programming, especially SystemVerilog & FPGA design.</p>
+              <br>
+              <p>> Fascinated by real-time systems, Linux kernel internals, ROS2 autonomous robotics, and building automated serverless cloud pipelines on AWS.</p>
+              <br>
+              <p><span class="prompt">Arman@node-01:~$</span> <span class="blinking-cursor">_</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Cutout Image with Glow Shadow -->
+      <div class="intro-right">
+        <div class="image-wrapper">
+          <img src="portrait.png" alt="Arman Portrait" class="profile-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Projects Explorer -->
+  <section class="projects-section">
+    <div class="projects-container">
+
+      <!-- Left Panel: 30% Sidebar / Project Directory -->
+      <div class="projects-sidebar">
+        <div class="sidebar-header">
+          <span>📁 /home/arman/projects</span>
+        </div>
+        <ul class="project-list">
+          <li class="project-item active" data-project="rover">
+            <span class="file-icon">></span> rover.project
+          </li>
+          <li class="project-item" data-project="videogame">
+            <span class="file-icon">></span> videogame.project
+          </li>
+          <li class="project-item" data-project="fpga">
+            <span class="file-icon">></span> fpga.project
+          </li>
+          <li class="project-item" data-project="cloud">
+            <span class="file-icon">></span> cloud_resume.project
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Panel: Terminal Output Display -->
+      <div class="projects-terminal">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">project_inspector.sh</span>
+        </div>
+        <div class="terminal-body scrollable-terminal" id="project-terminal-body">
+          <div id="project-output">
+            <!-- Dynamic content will print here -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
