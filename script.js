@@ -1,10 +1,10 @@
 // --- 1. HERO SECTION TYPING ANIMATION ---
 const phrases = [
     "Electronics & Communication Engineer",
-"Video Game Developer",
-"Cloud Engineer (AWS & Terraform)",
-"Linux & Git Specialist",
-"Robotics & Embedded Systems Developer"
+    "Video Game Developer",
+    "Cloud Engineer (AWS & Terraform)",
+    "Linux & Git Specialist",
+    "Robotics & Embedded Systems Developer"
 ];
 
 let phraseIndex = 0;
@@ -63,49 +63,28 @@ function typeCommand() {
         setTimeout(typeCommand, cmdTypingSpeed);
     } else {
         hasTyped = true;
-        // Command finished typing! Hide cursor & show bash output
         termCursor.style.display = "none";
-
         setTimeout(() => {
             cmdOutput.style.display = "block";
         }, 150);
     }
 }
 
-// --- INITIALIZATION ON DOM LOAD ---
-document.addEventListener("DOMContentLoaded", () => {
-    // Start Hero text animation
-    typeEffect();
-
-    // Trigger Terminal animation via IntersectionObserver
-    const introSection = document.querySelector(".intro-section");
-
-    if (introSection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Fire when even 10% of Section 2 is visible
-                if (entry.isIntersecting && !hasTyped) {
-                    typeCommand();
-                }
-            });
-        }, { threshold: 0.1 });
-
-        observer.observe(introSection);
-    }
-});
-
 // --- 3. PROJECTS TERMINAL EXPLORER LOGIC ---
 const projectData = {
     rover: {
         title: "ROS2 Autonomous Mobile Security Rover",
         tags: ["ROS2", "Raspberry Pi", "ESP32", "Python", "C++"],
-        description: "Autonomous ground rover featuring real-time obstacle avoidance, sensor fusion (LIDAR + Radar), and micro-ROS hardware communication pipelines.",
+        description: "Autonomous security rover designed for proactive intrusion detection, continuous patrol, and event-driven threat response. Integrates LiDAR-based SLAM, Nav2 autonomous navigation, mmWave human detection, environmental sensing, and distributed wireless perimeter nodes into a unified security platform.",
         features: [
-            "Configured custom ROS2 navigation nodes.",
-            "Integrated ESP32 motor drivers with low-latency UART telemetry.",
-            "3D printed modular chassis designed in Fusion 360."
+            "Built a ROS 2 autonomous navigation stack using SLAM Toolbox + Nav2 for mapping, localization, path planning, and obstacle avoidance.",
+            "Implemented a Raspberry Pi + ESP32 distributed architecture, separating high-level autonomy from real-time motor control and sensor acquisition.",
+            "Developed a dual-layer security system where remote ESP32 WSN nodes can trigger the rover to autonomously navigate to the intrusion location for visual verification.",
+            "Integrated RPLIDAR, LD2420 mmWave radar, IMU, MQ-135, DHT11, and camera for navigation, intrusion detection, and environmental monitoring.",
+            "Developed a mobile-responsive web dashboard with live video, SLAM map visualization, telemetry, alerts, operational modes, and manual teleoperation.",
+            "Validated the system through Gazebo simulation and physical deployment, including autonomous patrol, dynamic obstacle avoidance, and remote intrusion-response scenarios."
         ],
-        image: "rover.jpg" // Add your image path here when ready
+        image: "assets/rover.jpeg"
     },
     videogame: {
         title: "Custom Action RPG / Indie Game Project",
@@ -145,13 +124,12 @@ function displayProject(projectKey) {
     const data = projectData[projectKey];
     if (!outputContainer || !data || !terminalBody) return;
 
-    // 1. Remove the old active blinking cursor line from the bottom of the previous output if it exists
+    // Remove active blinking cursor line from previous output
     const previousCursorLine = outputContainer.querySelector(".active-cursor-line");
     if (previousCursorLine) {
         previousCursorLine.remove();
     }
 
-    // 2. Build the HTML block for THIS specific command execution
     let newEntryHTML = `
     <div class="terminal-log-entry" style="margin-bottom: 25px;">
     <p class="prompt">Arman@node-01:~/projects$ ./inspect.sh ${projectKey}.project</p>
@@ -169,17 +147,16 @@ function displayProject(projectKey) {
     </ul>
     `;
 
-    // Append image if present
     if (data.image) {
         newEntryHTML += `<br><img src="${data.image}" alt="${data.title}" class="project-img-preview">`;
     }
 
     newEntryHTML += `</div>`;
 
-    // 3. APPEND the new content to the existing log instead of erasing!
+    // Append output
     outputContainer.insertAdjacentHTML("beforeend", newEntryHTML);
 
-    // 4. Append a new active terminal prompt and blinking cursor at the very end
+    // Append active cursor line at bottom
     const activeCursorHTML = `
     <div class="active-cursor-line" style="margin-top: 15px;">
     <p><span class="prompt">Arman@node-01:~/projects$</span> <span class="blinking-cursor">_</span></p>
@@ -187,28 +164,59 @@ function displayProject(projectKey) {
     `;
     outputContainer.insertAdjacentHTML("beforeend", activeCursorHTML);
 
-    // 5. Auto-scroll the terminal to the bottom to follow the newest execution
+    // Scroll to bottom
     terminalBody.scrollTop = terminalBody.scrollHeight;
 }
 
-// Add Click Listeners to Sidebar Items
-document.addEventListener("DOMContentLoaded", () => {
-    const items = document.querySelectorAll(".project-item");
+function clearTerminal() {
+    const outputContainer = document.getElementById("project-output");
+    if (outputContainer) {
+        outputContainer.innerHTML = `
+        <div class="active-cursor-line">
+            <p><span class="prompt">Arman@node-01:~/projects$</span> <span class="blinking-cursor">_</span></p>
+        </div>
+        `;
+    }
+}
 
+// --- INITIALIZATION ---
+document.addEventListener("DOMContentLoaded", () => {
+    typeEffect();
+
+    const introSection = document.querySelector(".intro-section");
+    if (introSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasTyped) {
+                    typeCommand();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(introSection);
+    }
+
+    // Handle project clicks and clear action
+    const items = document.querySelectorAll(".project-item");
     items.forEach(item => {
         item.addEventListener("click", () => {
-            // Remove active state from all items
-            items.forEach(i => i.classList.remove("active"));
-
-            // Set active state on clicked item
-            item.classList.add("active");
-
-            // Render corresponding project details
+            const action = item.getAttribute("data-action");
             const projectKey = item.getAttribute("data-project");
-            displayProject(projectKey);
+
+            if (action === "clear") {
+                clearTerminal();
+            } else if (projectKey) {
+                items.forEach(i => {
+                    if (!i.classList.contains("clear-action")) {
+                        i.classList.remove("active");
+                    }
+                });
+                item.classList.add("active");
+                displayProject(projectKey);
+            }
         });
     });
 
-    // Default load first project on start
+    // Default load first project
     displayProject("rover");
 });

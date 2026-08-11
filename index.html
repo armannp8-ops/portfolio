@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Namra | Electronics & Cloud Engineer</title>
+  <title>Namra | Electronics &amp; Cloud Engineer</title>
 
   <!-- Load JetBrains Mono / Fira Code Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&amp;display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,12 +28,12 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
-      <p class="terminal-prefix">> system.init()</p>
+      <p class="terminal-prefix">&gt; system.init()</p>
       <h1>Hi, I'm <span class="highlight">Arman Sahl N P</span></h1>
       <h2><span id="typing-text"></span><span class="cursor">|</span></h2>
 
       <p class="hero-subtext">
-        Electronics & Communication Engineering (B.Tech)
+        Electronics &amp; Communication Engineering (B.Tech)
       </p>
 
       <div class="scroll-indicator">
@@ -62,13 +62,13 @@
 
             <!-- Output container hidden by default until typing finishes -->
             <div id="cmd-output" style="display: none; margin-top: 15px;">
-              <p>> I am <span class="terminal-red-text">Arman Sahl N P</span>, Electronics & Communication Engineering graduate, completed B.Tech in colege of Engineering Thalassery</p>
+              <p>&gt; I am <span class="terminal-red-text">Arman Sahl N P</span>, Electronics &amp; Communication Engineering graduate, completed B.Tech in College of Engineering Thalassery</p>
               <br>
-              <p>> Passionate video game developer working on custom projects, I love to make them</p>
+              <p>&gt; Passionate video game developer working on custom projects, I love to make them</p>
               <br>
-              <p>> Loves hardware-level programming, especially SystemVerilog & FPGA design.</p>
+              <p>&gt; Loves hardware-level programming, especially SystemVerilog &amp; FPGA design.</p>
               <br>
-              <p>> Fascinated by real-time systems, Linux kernel internals, ROS2 autonomous robotics, and building automated serverless cloud pipelines on AWS.</p>
+              <p>&gt; Fascinated by real-time systems, Linux kernel internals, ROS2 autonomous robotics, and building automated serverless cloud pipelines on AWS.</p>
               <br>
               <p><span class="prompt">Arman@node-01:~$</span> <span class="blinking-cursor">_</span></p>
             </div>
@@ -76,10 +76,10 @@
         </div>
       </div>
 
-      <!-- Right Column: Cutout Image with Glow Shadow -->
+      <!-- Right Column: Cutout Image inside Glowing Frame -->
       <div class="intro-right">
         <div class="image-wrapper">
-          <img src="portrait.png" alt="Arman Portrait" class="profile-img">
+          <img src="assets/namra.png" alt="Arman Portrait" class="profile-img">
         </div>
       </div>
 
@@ -97,16 +97,21 @@
         </div>
         <ul class="project-list">
           <li class="project-item active" data-project="rover">
-            <span class="file-icon">></span> rover.project
+            <span class="file-icon">&gt;</span> rover.project
           </li>
           <li class="project-item" data-project="videogame">
-            <span class="file-icon">></span> videogame.project
+            <span class="file-icon">&gt;</span> videogame.project
           </li>
           <li class="project-item" data-project="fpga">
-            <span class="file-icon">></span> fpga.project
+            <span class="file-icon">&gt;</span> fpga.project
           </li>
           <li class="project-item" data-project="cloud">
-            <span class="file-icon">></span> cloud_resume.project
+            <span class="file-icon">&gt;</span> cloud_resume.project
+          </li>
+
+          <!-- Executable clear script placed inside sidebar -->
+          <li class="project-item clear-action" data-action="clear">
+            <span class="file-icon">&gt;</span> clear_terminal.sh
           </li>
         </ul>
       </div>
@@ -121,7 +126,7 @@
         </div>
         <div class="terminal-body scrollable-terminal" id="project-terminal-body">
           <div id="project-output">
-            <!-- Dynamic content will print here -->
+            <!-- Dynamic content prints here -->
           </div>
         </div>
       </div>

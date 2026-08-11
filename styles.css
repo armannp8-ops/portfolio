@@ -10,7 +10,7 @@ html {
     scroll-snap-type: y mandatory;
     background-color: #0d0d0d;
     color: #f0f0f0;
-    font-family: 'Courier New', Courier, monospace; /* Terminal font vibe */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Hero Section Snap */
@@ -84,13 +84,12 @@ h2 {
 .bubble {
     position: absolute;
     bottom: -100px;
-    background: rgba(0, 255, 102, 0.15); /* Subtle glowing green tint */
+    background: rgba(0, 255, 102, 0.15);
     border: 1px solid rgba(0, 255, 102, 0.4);
     border-radius: 50%;
     animation: rise 12s infinite ease-in-out;
 }
 
-/* Bubble sizes & positioning offsets */
 .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-duration: 10s; animation-delay: 0s}
 .bubble:nth-child(2) { width: 160px; height: 160px; left: 25%; animation-duration: 14s; animation-delay: -3s; }
 .bubble:nth-child(3) { width: 40px; height: 40px; left: 40%; animation-duration: 8s; animation-delay: -1s; }
@@ -112,20 +111,20 @@ h2 {
     }
 }
 
-/* --- MOBILE RESPONSIVE FIXES (Android & iOS) --- */
+/* Mobile Responsive Fixes */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 0 24px; /* Extra side breathing room for Android screens */
+        padding: 0 24px;
     }
 
     h1 {
-        font-size: 2.2rem !important; /* Slightly scale down big heading for small screens */
+        font-size: 2.2rem !important;
         line-height: 1.2;
     }
 
     h2 {
-        font-size: 1.2rem !important; /* Scale down typing text so it doesn't wrap weirdly */
-        min-height: 3rem; /* Give space for 2-line wrapping on narrow phones */
+        font-size: 1.2rem !important;
+        min-height: 3rem;
     }
 
     .hero-subtext {
@@ -149,7 +148,7 @@ h2 {
 
 .intro-container {
     display: flex;
-    flex-direction: row; /* Desktop: Left/Right side-by-side */
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     max-width: 1600px;
@@ -157,7 +156,6 @@ h2 {
     gap: 40px;
 }
 
-/* Left Column: Terminal Styling */
 .intro-left {
     flex: 1;
 }
@@ -213,51 +211,51 @@ h2 {
     animation: blink 0.8s infinite;
 }
 
-/* Right Column: Profile Image & Shadow */
+/* Right Column: Profile Image & Glowing Container */
 .intro-right {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 40px;
 }
 
 .image-wrapper {
     position: relative;
-    max-width: 380px;
+    max-width: 340px;
     width: 100%;
+    border-radius: 8px;
+    border: 2px solid #ffffff;
+    background: #121212;
+    box-shadow: 0 0 30px rgba(0, 255, 102, 0.45),
+                inset 0 0 15px rgba(0, 255, 102, 0.2);
 }
 
 .profile-img {
     width: 100%;
     height: auto;
     display: block;
-    /* Glowing drop shadow that fits transparent background cutouts */
-    filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.25)) drop-shadow(0 15px 15px rgba(0, 0, 0, 0.6));
-    transition: filter 0.3s ease;
+    margin-top: -35px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.7));
 }
 
 .terminal-red-text {
-    color: #EF2929; /* Light/Bright terminal red */
+    color: #EF2929;
     font-weight: bold;
-
-    /* Optional: Gives it that neon CRT monitor glow */
     text-shadow: 0 0 5px rgba(239, 41, 41, 0.6);
 }
 
-.profile-img:hover {
-    filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.45));
-}
-
-/* --- RESPONSIVE MOBILE STACK (Android / iOS) --- */
 @media (max-width: 850px) {
     .intro-section {
-        height: auto; /* Allows section to expand vertically if needed on small screens */
+        height: auto;
         min-height: 100vh;
         padding: 60px 20px;
     }
 
     .intro-container {
-        flex-direction: column; /* Stack top-to-bottom on mobile */
+        flex-direction: column;
         gap: 30px;
     }
 
@@ -266,7 +264,7 @@ h2 {
     }
 
     .image-wrapper {
-        max-width: 260px; /* Resize photo so it fits cleanly under text on phone screens */
+        max-width: 260px;
     }
 
     .terminal-body {
@@ -292,11 +290,10 @@ h2 {
     flex-direction: row;
     width: 90vw;
     max-width: 1800px;
-    height: 75vh; /* Fixed height for dashboard feel */
+    height: 75vh;
     gap: 20px;
 }
 
-/* Left Sidebar: 30% width */
 .projects-sidebar {
     flex: 0 0 28%;
     background: #121212;
@@ -319,6 +316,9 @@ h2 {
 .project-list {
     list-style: none;
     padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .project-item {
@@ -345,7 +345,20 @@ h2 {
     font-weight: bold;
 }
 
-/* Right Terminal: Remaining width (~70%) */
+/* Clear Terminal Red Styling Restored */
+.clear-action {
+    margin-top: auto;
+    margin-bottom: 15px;
+    border-top: 1px solid #2a2a2a;
+    padding-top: 15px;
+    color: #ff5f56;
+}
+
+.clear-action:hover {
+    background: rgba(255, 95, 86, 0.1);
+    color: #ff5f56;
+}
+
 .projects-terminal {
     flex: 1;
     background: #121212;
@@ -356,7 +369,6 @@ h2 {
     overflow: hidden;
 }
 
-/* Scrollable Body with custom scrollbar */
 .scrollable-terminal {
     padding: 25px;
     overflow-y: auto;
@@ -367,7 +379,6 @@ h2 {
     color: #e0e0e0;
 }
 
-/* Custom Sleek Scrollbar */
 .scrollable-terminal::-webkit-scrollbar {
     width: 8px;
 }
@@ -382,7 +393,6 @@ h2 {
     background: #00ff66;
 }
 
-/* Formatting printed project content */
 .project-title-print {
     color: #00ff66;
     font-size: 1.3rem;
@@ -408,7 +418,6 @@ h2 {
     margin: 15px 0;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 850px) {
     .projects-section {
         height: auto;
